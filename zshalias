@@ -1,0 +1,14 @@
+# -*- mode: shell; coding: utf-8; -*-
+# 
+# ~/.zsh.d/zshalias
+# 
+
+# エイリアス
+alias ls='ls --color=auto'
+alias la='ls -la'
+alias ll='ls -laF --color | lv'
+alias lls='ls -ls --color'
+
+alias h='history -E -32'
+
+alias grpe='sl -g'
