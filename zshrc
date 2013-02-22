@@ -23,10 +23,11 @@ export LISTMAX=0
 ## パス
 # ----------------------------------------------------------
 
-if [[ `uname` = 'FreeBSD' ]]; then
-    # FreeBSD 用。
-    export PREFIX=/usr
-fi
+case ${OSTYPE} in
+    freebsd*|darwin*)
+        export PREFIX=/usr
+        ;;
+esac
 
 if [[ -d ~/bin ]]; then
     # ローカルのプログラムを置いておくところです。
@@ -80,8 +81,9 @@ path=(/usr/local/bin
 # 
 # ==============================================================================
 
-autoload colors
-colors
+autoload colors; colors
+
+setopt prompt_subst
 
 # 通常のプロンプトです。
 PROMPT="%B%n@%m%b %c %# "
