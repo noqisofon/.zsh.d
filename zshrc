@@ -9,9 +9,6 @@
 ## 言語的な意味で
 # ----------------------------------------------------------
 
-# 言語の設定を行います。
-export LANG=ja_JP.UTF-8
-
 # KNODE に UTF-8 を設定します。
 export KCODE=u
 
@@ -22,15 +19,6 @@ export KCODE=u
 #  -1 : 尋ねません。
 #   0 : 窓からあふれる場合は尋ねます。
 export LISTMAX=0
-
-## デフォルトコマンド的な意味で
-# ----------------------------------------------------------
-
-# デフォルトで使用するエディタを設定します。
-export EDITOR=vim
-if ! type vim > /dev/null 2>&1; then
-    alias vim=vi
-fi
 
 ## パス
 # ----------------------------------------------------------
@@ -75,7 +63,15 @@ fi
 
 typeset -U path
 
-path=($path ${LOCAL_BIN}(N) ${PSP_SDK}(N) ${ADDON_SDK}(N) ${CLOJURESCRIPT}(N))
+path=(/usr/local/bin
+    /usr/bin
+    /usr/local/sbin
+    /usr/sbin
+    /sbin
+    ${LOCAL_BIN}(N)
+    ${PSP_SDK}(N)
+    ${ADDON_SDK}(N)
+    ${CLOJURESCRIPT}(N))
 
 
 # ==============================================================================
@@ -83,6 +79,10 @@ path=($path ${LOCAL_BIN}(N) ${PSP_SDK}(N) ${ADDON_SDK}(N) ${CLOJURESCRIPT}(N))
 # プロンプト関係
 # 
 # ==============================================================================
+
+autoload colors
+colors
+
 # 通常のプロンプトです。
 PROMPT="%B%n@%m%b %c %# "
 # for や while 、複数行入力時等に表示されるプロンプトです。
