@@ -1,8 +1,8 @@
 # -*- mode: shell-script; coding: utf-8; -*-
 # 
 # zshrc
-#
-
+# 
+# 
 # 環境変数
 # ==========================================================
 
@@ -22,73 +22,81 @@ export LISTMAX=0
 
 ## パス
 # ----------------------------------------------------------
-
+#
+# Ports 用の設定。
+# 
 case ${OSTYPE} in
-    freebsd*|darwin*)
-        export PREFIX=/usr
-        ;;
+  freebsd*|darwin*)
+    export PREFIX=/usr
+    ;;
 esac
 
 if [[ -d ~/bin ]]; then
     # ローカルのプログラムを置いておくところです。
-    export LOCAL_BIN=~/bin
+  export LOCAL_BIN=~/bin
 fi
 
 if [[ -d /opt/pspsdk ]]; then
-    # PSP の開発環境へのパスです。
-    export PSP_SDK=/opt/pspsdk
+  # PSP の開発環境へのパスです。
+  export PSP_SDK=/opt/pspsdk
 fi
 
 if [[ -d /opt/addon-sdk ]]; then
-    # Addon SDK 用コマンドへのパスです。
-    export ADDON_SDK=/opt/addon-sdk
+  # Addon SDK 用コマンドへのパスです。
+  export ADDON_SDK=/opt/addon-sdk
 fi
 
 if [[ -d /opt/clojurescript/bin/ ]]; then
-    # Clojurescript へのパスです。
-    export CLOJURESCRIPT=/opt/clojurescript/bin/
+  # Clojurescript へのパスです。
+  export CLOJURESCRIPT=/opt/clojurescript/bin/
 fi
 
 if [[ -d /usr/share/java ]]; then
-    # jar ファイルが置いてあるパスです。
-    export JARLIB=/usr/share/java
-    # java 用のクラスパスです。
-    #export CLASSPATH='.:$JARLIB/*:$JARLIB/apache-ant/lib/*:$JARLIB/commons-collections/*:$JARLIB/jna/*:$JARLIB/junit/*:$JARLIB/logback/*:$JARLIB/slf4j/*:$JARLIB/thrift/*:$JARLIB/twitter4j/*'
-    export CLASSPATH='.:/usr/share/java/*:/usr/share/java/apache-ant/lib/*:/usr/share/java/commons-collections/*:/usr/share/java/jna/*:/usr/share/java/junit/*:/usr/share/java/logback/*:/usr/share/java/slf4j/*:/usr/share/java/thrift/*:/usr/share/java/twitter4j/*'
+  # jar ファイルが置いてあるパスです。
+  export JARLIB=/usr/share/java
+  # java 用のクラスパスです。
+  #export CLASSPATH='.:$JARLIB/*:$JARLIB/apache-ant/lib/*:$JARLIB/commons-collections/*:$JARLIB/jna/*:$JARLIB/junit/*:$JARLIB/logback/*:$JARLIB/slf4j/*:$JARLIB/thrift/*:$JARLIB/twitter4j/*'
+  export CLASSPATH='.:/usr/share/java/*:/usr/share/java/apache-ant/lib/*:/usr/share/java/commons-collections/*:/usr/share/java/jna/*:/usr/share/java/junit/*:/usr/share/java/logback/*:/usr/share/java/slf4j/*:/usr/share/java/thrift/*:/usr/share/java/twitter4j/*'
 fi
 
 if [[ -d /usr/lib/node_modules/ ]]; then
-    #export NODE_PATH=/usr/lib/node_modules/:.
-    export NODE_PATH=.:/usr/lib/node_modules/
+  #export NODE_PATH=/usr/lib/node_modules/:.
+  export NODE_PATH=.:/usr/lib/node_modules/
 fi
 
 typeset -U path
 
 path=(/usr/local/bin
-    /usr/bin
-    /usr/local/sbin
-    /usr/sbin
-    /sbin
-    ${LOCAL_BIN}(N)
-    ${PSP_SDK}(N)
-    ${ADDON_SDK}(N)
-    ${CLOJURESCRIPT}(N))
+  /usr/bin
+  /usr/local/sbin
+  /usr/sbin
+  /sbin
+  /bin
+  ${LOCAL_BIN}(N)
+  ${PSP_SDK}(N)
+  ${ADDON_SDK}(N)
+  ${CLOJURESCRIPT}(N))
 
 
-# ==============================================================================
-# 
 # プロンプト関係
-# 
 # ==============================================================================
-
-autoload colors; colors
+autoload -U promptinit && promptinit
+autoload -U colors && colors
 
 setopt prompt_subst
 
-# 通常のプロンプトです。
-PROMPT="%B%n@%m%b %c %# "
+case ${UID} in
+  0)
+    # root 用のプロンプトです。
+    PROMPT="%B%M%b %~ %# "
+    ;;
+  *)
+    # 通常のプロンプトです。
+    PROMPT="%B%n@%m%b %~ %# "
+    ;;
+esac
 # for や while 、複数行入力時等に表示されるプロンプトです。
-PROMPT2="%_>%_b"
+PROMPT2="%_ >%_b"
 # 入力ミスを確認する場合に表示されるプロンプトです。
 SPROMPT="'%r' is correct? [n,y,a,e]: "
 # 右に表示したいプロンプトです。
@@ -98,10 +106,7 @@ RPROMPT="%T"
 setopt transient_rprompt
 
 
-# ==============================================================================
-# 
 # キーバインド
-# 
 # ==============================================================================
 # vi ライクなキーバインドにします…がコメントアウトされています。
 #bindkey -v
@@ -109,13 +114,13 @@ setopt transient_rprompt
 bindkey -e
 
 
-# ==============================================================================
-# 
 # 補完関係
-# 
 # ==============================================================================
 # 標準の保管設定を行います。
-autoload -U compinit; compinit
+autoload -U compinit && compinit
+## 先行予測機能がとても糞いので無効にしておきます。
+# autoload predict-on && predict-on
+# zstyle ' :predict' toggle true
 
 # ディレクトリ名を入力するだけでカレントディレクトリを変更します。
 setopt auto_cd
@@ -144,27 +149,39 @@ setopt print_eight_bit
 # 補完時に大文字小文字を区別しないようにします(但し、大文字を打った場合は小文字に変換しません)。
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# ls コマンドの保管候補にも色つき表示を行います。
-eval `dircolors`
+if [ -f $HOST/.dir_colors ]; then
+  # ls コマンドの保管候補にも色つき表示を行います。
+  eval `dircolors -b ~/.dir_colors`
+fi
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
 # kill の候補にも色つき表示を行います。
 zstyle ':completion:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 
+# コマンドの先頭に sudo をつけてもきちんと保管できるようにします。
+zstyle ' :completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+  /usr/sbin /sbin /bin /usr/X11R6/bin
 
-# ==============================================================================
-# 
+
 # 履歴関係
-# 
 # ==============================================================================
-# ヒストリーファイルのパスを設定します。
-HISTFILE=~/.zsh_history
+# root は履歴を保存しないようにします。
+if [ $UID = 0 ]; then
+  unset HISTFILE
+  SAVEHIST=0
+else
+  # それ以外のユーザーでは履歴を保存するようにします。
 
-# ヒストリに保存するコマンド数です。
-HISTSIZE=10000
+  # ヒストリーファイルのパスを設定します。
+  HISTFILE=~/.zsh_history
+  # ヒストリに保存するコマンド数です。
+  HISTSIZE=10000
+  # ヒストリファイルに保存するコマンド数です。
+  SAVEHIST=10000
+fi
 
-# ヒストリファイルに保存するコマンド数です。
-SAVEHIST=10000
+# 履歴を複数端末間で共有します。
+setopt share_history
 
 # 重複するコマンド行は古い方を削除します。
 setopt hist_ignore_all_dups
@@ -194,10 +211,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 
-# ==============================================================================
-# 
 # エイリアス
-# 
 # ==============================================================================
 # 保管される前にオリジナルのコマンドまで展開してチェックします。
 setopt complete_aliases
