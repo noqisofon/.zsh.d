@@ -31,7 +31,7 @@ case ${OSTYPE} in
     ;;
 esac
 
-if [[ -d ~/bin ]]; then
+if [[ -d $HOME/bin ]]; then
     # ローカルのプログラムを置いておくところです。
   export LOCAL_BIN=~/bin
 fi
@@ -55,8 +55,11 @@ if [[ -d /usr/share/java ]]; then
   # jar ファイルが置いてあるパスです。
   export JARLIB=/usr/share/java
   # java 用のクラスパスです。
-  #export CLASSPATH='.:$JARLIB/*:$JARLIB/apache-ant/lib/*:$JARLIB/commons-collections/*:$JARLIB/jna/*:$JARLIB/junit/*:$JARLIB/logback/*:$JARLIB/slf4j/*:$JARLIB/thrift/*:$JARLIB/twitter4j/*'
-  export CLASSPATH='.:/usr/share/java/*:/usr/share/java/apache-ant/lib/*:/usr/share/java/commons-collections/*:/usr/share/java/jna/*:/usr/share/java/junit/*:/usr/share/java/logback/*:/usr/share/java/slf4j/*:/usr/share/java/thrift/*:/usr/share/java/twitter4j/*'
+  export CLASSPATH="${JARLIB}/*:${JARLIB}/apache-ant/*:${JARLIB}/hamcrest/*:${JARLIB}/jna/*:${JARLIB}/twitter4j/*"
+fi
+
+if [[ -d /usr/share/clojure ]]; then
+  export CLOJURE_CLASSPATH="${JARLIB}/*:${JARLIB}/apache-ant/*:${JARLIB}/hamcrest/*:${JARLIB}/jna/*:${JARLIB}/twitter4j/*"
 fi
 
 if [[ -d /usr/lib/node_modules/ ]]; then
