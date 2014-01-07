@@ -33,7 +33,19 @@ esac
 
 if [[ -d $HOME/bin ]]; then
     # ローカルのプログラムを置いておくところです。
-  export LOCAL_BIN=~/bin
+  export LOCAL_BIN=$HOME/bin
+fi
+
+if [[ -d $HOME/.gem/ruby/2.0.0/bin ]]; then
+  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.0.0/bin
+fi
+
+if [[ -d /opt/android-ndk ]]; then
+  export ANDROID_NDK=/opt/android-ndk
+fi
+
+if [[ -d /opt/android-sdk ]]; then
+  export ANDROID_SDK=/opt/android-sdk/tools
 fi
 
 if [[ -d /opt/pspsdk ]]; then
@@ -51,15 +63,10 @@ if [[ -d /opt/clojurescript/bin/ ]]; then
   export CLOJURESCRIPT=/opt/clojurescript/bin/
 fi
 
-if [[ -d /usr/share/java ]]; then
-  # jar ファイルが置いてあるパスです。
-  export JARLIB=/usr/share/java
-  # java 用のクラスパスです。
-  export CLASSPATH="${JARLIB}/*:${JARLIB}/apache-ant/*:${JARLIB}/hamcrest/*:${JARLIB}/jna/*:${JARLIB}/twitter4j/*"
-fi
+source $HOME/.zsh.d/classpath
 
 if [[ -d /usr/share/clojure ]]; then
-  export CLOJURE_CLASSPATH="${JARLIB}/*:${JARLIB}/apache-ant/*:${JARLIB}/hamcrest/*:${JARLIB}/jna/*:${JARLIB}/twitter4j/*"
+  export CLOJURE_CLASSPATH="${CLASSPATH}"
 fi
 
 if [[ -d /usr/lib/node_modules/ ]]; then
@@ -76,9 +83,12 @@ path=(/usr/local/bin
   /sbin
   /bin
   ${LOCAL_BIN}(N)
+  ${ANDROID_NDK}(N)
+  ${ANDROID_SDK}(N)
   ${PSP_SDK}(N)
   ${ADDON_SDK}(N)
-  ${CLOJURESCRIPT}(N))
+  ${CLOJURESCRIPT}(N)
+  ${RUBYGEMS_BIN}(N))
 
 
 # プロンプト関係

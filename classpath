@@ -1,0 +1,60 @@
+# -*- mode: shell-script; coding: utf-8; -*-
+# 
+# classpath
+# 
+#
+if [[ -d /usr/share/java ]]; then
+  # jar ファイルが置いてあるパスです。
+  export JARLIB=/usr/share/java
+  # java 用のクラスパスです。
+  CLASSPATH="${JARLIB}/*"
+
+  if [[ -d ${JARLIB}/apache-ant ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/apache-ant/*"
+  fi
+
+  if [[ -d ${JARLIB}/commons-codec ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/commons-codec/*"
+  fi
+
+  if [[ -d ${JARLIB}/commons-io ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/commons-io/*"
+  fi
+
+  if [[ -d ${JARLIB}/commons-logging ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/commons-logging/*"
+  fi
+
+  # if [[ -d ${JARLIB}/gradle ]]; then
+  #   CLASSPATH="${CLASSPATH}:${JARLIB}/gradle/*"
+  # fi
+
+  if [[ -d ${JARLIB}/guava ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/guava/*"
+  fi
+
+  if [[ -d ${JARLIB}/hamcrest ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/hamcrest/*"
+  fi
+
+  if [[ -d ${JARLIB}/jna ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/jna/*"
+  fi
+
+  if [[ -d ${JARLIB}/nailgun ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/nailgun/*"
+  fi
+
+  if [[ -d ${JARLIB}/testng ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/testng/*"
+  fi
+
+  if [[ -d ${JARLIB}/twitter4j ]]; then
+    CLASSPATH="${CLASSPATH}:${JARLIB}/twitter4j/*"
+  fi
+
+  if [ -d /usr/share/lwjgl/jar/ ]; then
+    CLASSPATH="${CLASSPATH}:/usr/share/lwjgl/jar/*"
+  fi
+  export CLASSPATH
+fi
