@@ -36,6 +36,10 @@ if [[ -d $HOME/bin ]]; then
   export LOCAL_BIN=$HOME/bin
 fi
 
+if [[ -d /usr/bin/core_perl ]]; then
+  export PERL_BIN=/usr/bin/core_perl
+fi
+
 if [[ -d $HOME/.gem/ruby/2.0.0/bin ]]; then
   export RUBYGEMS_BIN=$HOME/.gem/ruby/2.0.0/bin
 fi
@@ -83,6 +87,7 @@ path=(/usr/local/bin
   /sbin
   /bin
   ${LOCAL_BIN}(N)
+  ${PERL_BIN}(N)
   ${ANDROID_NDK}(N)
   ${ANDROID_SDK}(N)
   ${PSP_SDK}(N)
