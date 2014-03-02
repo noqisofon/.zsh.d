@@ -1,0 +1,16 @@
+# -*- mode: shell-script; coding: utf-8; -*-
+# 
+# perlenv
+# 
+# 
+if [[ -d /usr/bin/core_perl ]]; then
+  export CORE_PERL_BIN="/usr/bin/core_perl"
+fi
+
+if [[ -d /usr/bin/site_perl/ ]]; then
+  export SITE_PERL_BIN="/usr/bin/site_perl/"
+fi
+
+if [[ -d /usr/bin/vendor_perl/ ]]; then
+  export VENDOR_PERL_BIN="/usr/bin/vendor_perl/"
+fi

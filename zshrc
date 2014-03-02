@@ -36,12 +36,10 @@ if [[ -d $HOME/bin ]]; then
   export LOCAL_BIN=$HOME/bin
 fi
 
-if [[ -d /usr/bin/core_perl ]]; then
-  export PERL_BIN=/usr/bin/core_perl
-fi
+source $HOME/.zsh.d/perlenv
 
-if [[ -d $HOME/.gem/ruby/2.0.0/bin ]]; then
-  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.0.0/bin
+if [[ -d $HOME/.gem/ruby/2.1.0/bin ]]; then
+  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.1.0/bin
 fi
 
 if [[ -d /opt/android-ndk ]]; then
@@ -80,20 +78,22 @@ fi
 
 typeset -U path
 
-path=(/usr/local/bin
-  /usr/bin
-  /usr/local/sbin
-  /usr/sbin
-  /sbin
+path=(/sbin
   /bin
+  /usr/sbin
+  /usr/bin
+  /usr/local/bin
+  /usr/local/sbin
   ${LOCAL_BIN}(N)
-  ${PERL_BIN}(N)
+  ${CORE_PERL_BIN}(N)
+  ${SITE_PERL_BIN}(N)
+  ${VENDOR_PERL_BIN}(N)
+  ${RUBYGEMS_BIN}(N)
   ${ANDROID_NDK}(N)
   ${ANDROID_SDK}(N)
   ${PSP_SDK}(N)
   ${ADDON_SDK}(N)
-  ${CLOJURESCRIPT}(N)
-  ${RUBYGEMS_BIN}(N))
+  ${CLOJURESCRIPT}(N))
 
 
 # プロンプト関係
