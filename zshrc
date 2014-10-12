@@ -38,24 +38,24 @@ fi
 
 source $HOME/.zsh.d/perlenv
 
-if [[ -d $HOME/.gem/ruby/2.1.0/bin ]]; then
+if [[ -d $HOME/.gem/ruby/2.1.0/bin/ ]]; then
   export RUBYGEMS_BIN=$HOME/.gem/ruby/2.1.0/bin
 fi
 
-if [[ -d /opt/android-ndk ]]; then
+if [[ -d /opt/android-ndk/ ]]; then
   export ANDROID_NDK=/opt/android-ndk
 fi
 
-if [[ -d /opt/android-sdk ]]; then
+if [[ -d /opt/android-sdk/ ]]; then
   export ANDROID_SDK=/opt/android-sdk/tools
 fi
 
-if [[ -d /opt/pspsdk ]]; then
+if [[ -d /opt/pspsdk/ ]]; then
   # PSP の開発環境へのパスです。
   export PSP_SDK=/opt/pspsdk
 fi
 
-if [[ -d /opt/addon-sdk ]]; then
+if [[ -d /opt/addon-sdk/ ]]; then
   # Addon SDK 用コマンドへのパスです。
   export ADDON_SDK=/opt/addon-sdk
 fi
@@ -67,13 +67,17 @@ fi
 
 source $HOME/.zsh.d/classpath
 
-if [[ -d /usr/share/clojure ]]; then
+if [[ -d /usr/share/clojure/ ]]; then
   export CLOJURE_CLASSPATH="${CLASSPATH}"
 fi
 
 if [[ -d /usr/lib/node_modules/ ]]; then
   #export NODE_PATH=/usr/lib/node_modules/:.
   export NODE_PATH=.:/usr/lib/node_modules/
+fi
+
+if [[ -d /usr/lib/go/ ]]; then
+  export GOPATH=~/.golang/
 fi
 
 typeset -U path
