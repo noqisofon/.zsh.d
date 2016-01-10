@@ -4,13 +4,17 @@
 # 
 # 
 if [[ -d /usr/bin/core_perl ]]; then
-  export CORE_PERL_BIN="/usr/bin/core_perl"
+  export CORE_PERL_BIN=/usr/bin/core_perl
 fi
 
 if [[ -d /usr/bin/site_perl/ ]]; then
-  export SITE_PERL_BIN="/usr/bin/site_perl/"
+  export SITE_PERL_BIN=/usr/bin/site_perl/
 fi
 
 if [[ -d /usr/bin/vendor_perl/ ]]; then
-  export VENDOR_PERL_BIN="/usr/bin/vendor_perl/"
+  export VENDOR_PERL_BIN=/usr/bin/vendor_perl/
+fi
+
+if [[ -d ~/.perl6/2015.12/bin/ ]]; then
+    export PERL6_PANDA_BIN=~/.perl6/2015.12/bin/
 fi
