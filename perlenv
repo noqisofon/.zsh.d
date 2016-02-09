@@ -15,6 +15,6 @@ if [[ -d /usr/bin/vendor_perl/ ]]; then
   export VENDOR_PERL_BIN=/usr/bin/vendor_perl/
 fi
 
-if [[ -d ~/.perl6/2015.12/bin/ ]]; then
-    export PERL6_PANDA_BIN=~/.perl6/2015.12/bin/
+if [[ -d ~/.perl6/2016.01/bin/ ]]; then
+    export PERL6_PANDA_BIN=~/.perl6/2016.01/bin/
 fi
