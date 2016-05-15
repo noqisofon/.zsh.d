@@ -36,7 +36,11 @@ if [[ -d $HOME/bin ]]; then
   export LOCAL_BIN=$HOME/bin
 fi
 #
-source $HOME/.zsh.d/perlenv
+
+if [[ -f $HOME/.zsh.d/perlenv ]]; then
+    source $HOME/.zsh.d/perlenv
+fi
+
 #
 if [[ -d $HOME/.gem/ruby/2.3.0/bin/ ]]; then
   export RUBYGEMS_BIN=$HOME/.gem/ruby/2.3.0/bin
@@ -65,7 +69,11 @@ if [[ -d /opt/clojurescript/bin/ ]]; then
   export CLOJURESCRIPT=/opt/clojurescript/bin/
 fi
 #
-source $HOME/.zsh.d/classpath
+
+if [[ -f $HOME/.zsh.d/classpath ]]; then
+    source $HOME/.zsh.d/classpath
+fi
+
 #
 if [[ -d /usr/share/clojure/ ]]; then
   export CLOJURE_CLASSPATH="${CLASSPATH}"
@@ -83,22 +91,22 @@ fi
 typeset -U path
 #
 path=(/sbin
-  /bin
-  /usr/sbin
-  /usr/bin
-  /usr/local/bin
-  /usr/local/sbin
-  ${LOCAL_BIN}(N)
-  ${CORE_PERL_BIN}(N)
-  ${SITE_PERL_BIN}(N)
-  ${VENDOR_PERL_BIN}(N)
-  ${PERL6_PANDA_BIN}(N)
-  ${RUBYGEMS_BIN}(N)
-  ${ANDROID_NDK}(N)
-  ${ANDROID_SDK}(N)
-  ${PSP_SDK}(N)
-  ${ADDON_SDK}(N)
-  ${CLOJURESCRIPT}(N))
+      /bin
+      /usr/sbin
+      /usr/bin
+      /usr/local/bin
+      /usr/local/sbin
+      ${LOCAL_BIN}(N)
+      ${CORE_PERL_BIN}(N)
+      ${SITE_PERL_BIN}(N)
+      ${VENDOR_PERL_BIN}(N)
+      ${PERL6_PANDA_BIN}(N)
+      ${RUBYGEMS_BIN}(N)
+      ${ANDROID_NDK}(N)
+      ${ANDROID_SDK}(N)
+      ${PSP_SDK}(N)
+      ${ADDON_SDK}(N)
+      ${CLOJURESCRIPT}(N))
 #
 # プロンプト関係
 # ==============================================================================

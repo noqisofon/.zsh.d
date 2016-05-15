@@ -40,3 +40,9 @@ alias mvi='mv -i'
 ### タイポ強制ギプス
 # --------------------------------------------------------------------
 alias grpe='sl -g'
+
+### Steam を動かすために必要
+#
+# --------------------------------------------------------------------
+alias remove-bad-steam-libs='find ~/.steam/root/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" \) -print -delete'
+alias remove-bad-steam-libs-local='find ~/.local/share/Steam/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" \) -print -delete'
