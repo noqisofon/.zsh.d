@@ -14,8 +14,21 @@ export LANG=ja_JP.utf8
 #
 # デフォルトで使用するエディタを設定します。
 export EDITOR=vim
+export VISUAL=vim
 if ! type vim > /dev/null 2>&1; then
     alias vim=vi
 fi
-#
-export VISUAL=vim
+
+export LESS='-R'
+if [ -f ~/.source-highlight/src-hilite-lesspipe.sh ]; then
+   export LESSOPEN='| ~/.source-highlight/src-hilite-lesspipe.sh %s'
+fi
+
+if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
+    TERM=linux
+fi
+
+if [ "$TERM" = "linux" ]; then
+    export LC_TIME=C
+    export LC_MESSAGES=C
+fi

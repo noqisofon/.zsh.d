@@ -42,8 +42,8 @@ if [[ -f $HOME/.zsh.d/perlenv ]]; then
 fi
 
 #
-if [[ -d $HOME/.gem/ruby/2.3.0/bin/ ]]; then
-  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.3.0/bin
+if [[ -d $HOME/.gem/ruby/2.4.0/bin/ ]]; then
+  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.4.0/bin
 fi
 #
 if [[ -d /opt/android-ndk/ ]]; then
@@ -85,7 +85,7 @@ if [[ -d /usr/lib/node_modules/ ]]; then
 fi
 #
 if [[ -d /usr/lib/go/ ]]; then
-  export GOPATH=~/.golang/
+  export GOPATH=$HOME/.golang/
 fi
 #
 typeset -U path
@@ -177,7 +177,7 @@ setopt print_eight_bit
 # 補完時に大文字小文字を区別しないようにします(但し、大文字を打った場合は小文字に変換しません)。
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 #
-if [ -f $HOST/.dir_colors ]; then
+if [ -f $HOME/.dir_colors ]; then
   # ls コマンドの保管候補にも色つき表示を行います。
   eval `dircolors -b ~/.dir_colors`
 fi
@@ -210,12 +210,6 @@ fi
 # 履歴を複数端末間で共有します。
 setopt share_history
 #
-# 重複するコマンド行は古い方を削除します。
-setopt hist_ignore_all_dups
-#
-# 直前と同じコマンドラインはヒストリに追加しないようにします。
-setopt hist_ignore_dups
-#
 # コマンド履歴ファイルを共有します。
 setopt share_history
 #
@@ -225,17 +219,23 @@ setopt inc_append_history
 # history コマンドは履歴に登録しません。
 setopt hist_no_store
 #
-# 余分な空白は詰めて記録します。
-setopt hist_reduce_blanks
-#
-# 先頭がスペースの場合、ヒストリに追加しません。
-setopt hist_ignore_space
-#
 # cd - と入力して Tab キーで今までに移動したディレクトリを一覧表示します。
 setopt auto_pushd
 #
 # ディレクトリスタックで重複する古い方を削除することにします。
 setopt pushd_ignore_dups
+#
+# 先頭がスペースの場合、ヒストリに追加しません。
+setopt hist_ignore_space
+#
+# 重複するコマンド行は古い方を削除します。
+setopt hist_ignore_all_dups
+#
+# 直前と同じコマンドラインはヒストリに追加しないようにします。
+setopt hist_ignore_dups
+#
+# 余分な空白は詰めて記録します。
+setopt hist_reduce_blanks
 #
 # エイリアス
 # ==============================================================================

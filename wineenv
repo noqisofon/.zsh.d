@@ -1,0 +1,12 @@
+# -*- mode: shell-script; coding: utf-8; -*-
+# 
+# wineenv
+# 
+#
+# WINARCH
+#
+#   win32 | win64
+#
+WINEARCH=win64
+
+WINEPREFIX=~/.wine/
