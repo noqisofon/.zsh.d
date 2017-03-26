@@ -179,7 +179,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 #
 if [ -f $HOME/.dir_colors ]; then
   # ls コマンドの保管候補にも色つき表示を行います。
-  eval `dircolors -b ~/.dir_colors`
+  eval `dircolors ~/.dir_colors`
 fi
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 #

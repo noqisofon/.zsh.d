@@ -32,3 +32,7 @@ if [ "$TERM" = "linux" ]; then
     export LC_TIME=C
     export LC_MESSAGES=C
 fi
+
+if [ ! -f $HOME/.dir_colors ]; then
+    dircolors -p > ~/.dir_colors
+fi
