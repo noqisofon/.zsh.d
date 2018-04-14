@@ -26,14 +26,14 @@ export LISTMAX=0
 # Ports 用の設定。
 # 
 case ${OSTYPE} in
-  freebsd*|darwin*)
-    export PREFIX=/usr
-    ;;
+    freebsd*|darwin*)
+        export PREFIX=/usr
+        ;;
 esac
 #
 if [[ -d $HOME/bin ]]; then
-  # ローカルのプログラムを置いておくところです。
-  export LOCAL_BIN=$HOME/bin
+    # ローカルのプログラムを置いておくところです。
+    export LOCAL_BIN=$HOME/bin
 fi
 #
 
@@ -42,33 +42,37 @@ if [[ -f $HOME/.zsh.d/perlenv ]]; then
 fi
 
 #
-if [[ -d $HOME/.gem/ruby/2.4.0/bin/ ]]; then
-  export RUBYGEMS_BIN=$HOME/.gem/ruby/2.4.0/bin
+if [[ -d $HOME/.gem/ruby/2.5.0/bin/ ]]; then
+    export RUBYGEMS_BIN=$HOME/.gem/ruby/2.5.0/bin
 fi
 #
 if [[ -d /opt/android-ndk/ ]]; then
-  export ANDROID_NDK=/opt/android-ndk
+    export ANDROID_NDK=/opt/android-ndk
 fi
 #
 if [[ -d /opt/android-sdk/ ]]; then
-  export ANDROID_SDK=/opt/android-sdk/tools
+    export ANDROID_SDK=/opt/android-sdk/tools
 fi
 #
 if [[ -d /opt/pspsdk/ ]]; then
-  # PSP の開発環境へのパスです。
-  export PSP_SDK=/opt/pspsdk
+    # PSP の開発環境へのパスです。
+    export PSP_SDK=/opt/pspsdk
 fi
 #
 if [[ -d /opt/addon-sdk/ ]]; then
-  # Addon SDK 用コマンドへのパスです。
-  export ADDON_SDK=/opt/addon-sdk
+    # Addon SDK 用コマンドへのパスです。
+    export ADDON_SDK=/opt/addon-sdk
 fi
 #
 if [[ -d /opt/clojurescript/bin/ ]]; then
-  # Clojurescript へのパスです。
-  export CLOJURESCRIPT=/opt/clojurescript/bin/
+    # Clojurescript へのパスです。
+    export CLOJURESCRIPT=/opt/clojurescript/bin
 fi
 #
+
+if [[ -d /usr/lib/python3.6/site-packages ]]; then
+    export PYTHONPATH=/usr/lib/python3.6/site-packages
+fi
 
 if [[ -f $HOME/.zsh.d/classpath ]]; then
     source $HOME/.zsh.d/classpath
@@ -76,16 +80,20 @@ fi
 
 #
 if [[ -d /usr/share/clojure/ ]]; then
-  export CLOJURE_CLASSPATH="${CLASSPATH}"
+    export CLOJURE_CLASSPATH="${CLASSPATH}"
 fi
 #
 if [[ -d /usr/lib/node_modules/ ]]; then
-  #export NODE_PATH=/usr/lib/node_modules/:.
-  export NODE_PATH=.:/usr/lib/node_modules/
+    #export NODE_PATH=/usr/lib/node_modules/:.
+    export NODE_PATH=.:/usr/lib/node_modules
 fi
 #
 if [[ -d /usr/lib/go/ ]]; then
-  export GOPATH=$HOME/.golang/
+    export GOPATH=$HOME/.golang
+fi
+#
+if [[ -d ~/.yarn/bin/ ]]; then
+    export YARN_BIN=~/.yarn/bin
 fi
 #
 typeset -U path
@@ -100,13 +108,15 @@ path=(/sbin
       ${CORE_PERL_BIN}(N)
       ${SITE_PERL_BIN}(N)
       ${VENDOR_PERL_BIN}(N)
-      ${PERL6_PANDA_BIN}(N)
+      ${PERL_LOCAL_BIN}(N)
+      ${PERL6_BIN}(N)
       ${RUBYGEMS_BIN}(N)
       ${ANDROID_NDK}(N)
       ${ANDROID_SDK}(N)
       ${PSP_SDK}(N)
       ${ADDON_SDK}(N)
-      ${CLOJURESCRIPT}(N))
+      ${CLOJURESCRIPT}(N)
+      ${YARN_BIN}(N))
 #
 # プロンプト関係
 # ==============================================================================
@@ -178,8 +188,8 @@ setopt print_eight_bit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 #
 if [ -f $HOME/.dir_colors ]; then
-  # ls コマンドの保管候補にも色つき表示を行います。
-  eval `dircolors ~/.dir_colors`
+    # ls コマンドの保管候補にも色つき表示を行います。
+    eval `dircolors ~/.dir_colors`
 fi
 zstyle ':completion:*:default' list-colors ${LS_COLORS}
 #
@@ -194,17 +204,17 @@ zstyle ' :completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ==============================================================================
 # root は履歴を保存しないようにします。
 if [ $UID = 0 ]; then
-  unset HISTFILE
-  SAVEHIST=0
+    unset HISTFILE
+    SAVEHIST=0
 else
-  # それ以外のユーザーでは履歴を保存するようにします。
-  #
-  # ヒストリーファイルのパスを設定します。
-  HISTFILE=~/.zsh_history
-  # ヒストリに保存するコマンド数です。
-  HISTSIZE=10000
-  # ヒストリファイルに保存するコマンド数です。
-  SAVEHIST=10000
+    # それ以外のユーザーでは履歴を保存するようにします。
+    #
+    # ヒストリーファイルのパスを設定します。
+    HISTFILE=~/.zsh_history
+    # ヒストリに保存するコマンド数です。
+    HISTSIZE=10000
+    # ヒストリファイルに保存するコマンド数です。
+    SAVEHIST=10000
 fi
 #
 # 履歴を複数端末間で共有します。
