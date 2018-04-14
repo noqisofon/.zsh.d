@@ -69,9 +69,8 @@ if [[ -d /opt/clojurescript/bin/ ]]; then
     export CLOJURESCRIPT=/opt/clojurescript/bin
 fi
 #
-
-if [[ -d /usr/lib/python3.6/site-packages ]]; then
-    export PYTHONPATH=/usr/lib/python3.6/site-packages
+if [[ -f $HOME/.zsh.d/pythonenv ]]; then
+    source $HOME/.zsh.d/pythonenv
 fi
 
 if [[ -f $HOME/.zsh.d/classpath ]]; then

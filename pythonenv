@@ -1,0 +1,9 @@
+# -*- mode: shell-script; coding: utf-8; -*-
+# 
+# pythonenv
+#
+
+
+if [[ -d /usr/lib/python3.6/site-packages ]]; then
+    export PYTHONPATH=/usr/lib/python3.6/site-packages
+fi
