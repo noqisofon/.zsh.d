@@ -42,8 +42,8 @@ if [[ -f $HOME/.zsh.d/perlenv ]]; then
 fi
 
 #
-if [[ -d $HOME/.gem/ruby/2.5.0/bin/ ]]; then
-    export RUBYGEMS_BIN=$HOME/.gem/ruby/2.5.0/bin
+if [[ -d $HOME/.gem/ruby/2.6.0/bin/ ]]; then
+    export RUBYGEMS_BIN=$HOME/.gem/ruby/2.6.0/bin
 fi
 #
 if [[ -d /opt/android-ndk/ ]]; then
