@@ -1,0 +1,3 @@
+export RUBY_VERSION=2.7.0
+
+test -d $HOME/.gem/ruby/$RUBY_VERSION/bin/ && export RUBYGEMS_BIN_DIR=$HOME/.gem/ruby/$RUBY_VERSION/bin

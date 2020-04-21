@@ -1,0 +1,162 @@
+# -*- coding: utf-8; -*-
+#+title: zshenv
+#+options: ^:nil
+
+* 環境変数
+
+
+
+** PREFIX
+
+Ports 用の設定です。
+
+#+begin_src shell-script :tangle ./zshenv
+  case ${OSTYPE} in
+      freebsd*|darwin*)
+          export PREFIX=/usr
+          ;;
+  esac
+#+end_src
+
+** LANG
+
+言語の設定を行います。
+
+#+begin_src shell-script :tangle ./zshenv
+  export LANG=ja_JP.utf8
+#+end_src
+
+
+** KCODE
+
+KCODE に UTF-8 を設定します。
+
+#+begin_src shell-script :tangle ./zshenv
+  export KCODE=u
+#+end_src
+
+** EDITOR, VISUAL
+
+デフォルトで使用するエディタを設定します。
+
+#+begin_src shell-script :tangle ./zshenv
+  export EDITOR=vim
+#+end_src
+
+
+#+begin_src shell-script :tangle ./zshenv
+  export VISUAL=vim
+#+end_src
+
+#+begin_src shell-script :tangle ./zshenv
+  if ! type vim > /dev/null 2>&1; then
+      alias vim=vi
+  fi
+#+end_src
+
+** LISTMAX
+
+保管リストが多い時に尋ねる数です。
+
+| -1 | 尋ねません。                   |
+|  0 | 窓からあふれる場合は尋ねます。 |
+
+#+begin_src shell-script :tangle ./zshenv
+  export LISTMAX=0
+#+end_src
+
+** LESS
+
+#+begin_src shell-script :tangle ./zshenv
+  export LESS='-R'
+#+end_src
+
+** LESSOPEN
+
+#+begin_src shell-script :tangle ./zshenv
+  if [ -f $HOME/.source-highlight/src-hilite-lesspipe.sh ]; then
+     export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
+  fi
+#+end_src
+
+** TERM
+
+
+#+begin_src shell-script :tangle ./zshenv
+  if [ "$TERM" = "" -o "$TERM" = "unknown" ]; then
+      TERM=linux
+  fi
+#+end_src
+
+ターミナル画面の際に文字化けを防ぎます。
+
+#+begin_src shell-script :tangle ./zshenv
+  if [ "$TERM" = "linux" ]; then
+      export LC_TIME=C
+      export LC_MESSAGES=C
+  fi
+#+end_src
+
+** LOCAL_BIN_DIR
+
+ローカルのプログラムを置いておくところです。
+
+#+begin_src shell-script :tangle ./zshenv
+  if [[ -d $HOME/bin ]]; then
+      export LOCAL_BIN_DIR=$HOME/bin
+  fi
+#+end_src
+
+** ANDROID_NDK_DIR
+
+Android NDK 用のツールが入ったパスです。
+
+#+begin_src shell-script :tangle ./zshenv
+  if [[ -d /opt/android-ndk/ ]]; then
+      export ANDROID_NDK_DIR=/opt/android-ndk
+  fi
+#+end_src
+
+
+* 他のスクリプト参照
+
+Perl 用。
+
+#+begin_src shell-script :tangle ./zshenv
+  test -f $HOME/.zsh.d/perlenv && source $HOME/.zsh.d/perlenv
+#+end_src
+
+Ruby 用。
+
+#+begin_src shell-script :tangle ./zshenv
+  test -f $HOME/.zsh.d/rubyenv && source $HOME/.zsh.d/rubyenv
+#+end_src
+
+
+* PATH 関連
+
+#+begin_src shell-script :tangle ./zshenv
+  typeset -U path
+#+end_src
+
+#+begin_src shell-script :tangle ./zshenv
+  path=(/sbin
+        /bin
+        /usr/sbin
+        /usr/bin
+        /usr/local/bin
+        /usr/local/sbin
+        ${LOCAL_BIN_DIR}(N)
+        ${CORE_PERL_BIN_DIR}(N)
+        ${SITE_PERL_BIN_DIR}(N)
+        ${VENDOR_PERL_BIN_DIR}(N)
+        ${PERL_LOCAL_BIN_DIR}(N)
+        ${PERL6_BIN_DIR}(N)
+        ${RUBYGEMS_BIN_DIR}(N)
+        ${ANDROID_NDK_DIR}(N)
+        ${ANDROID_SDK_DIR}(N)
+        ${PSP_SDK_DIR}(N)
+        ${ADDON_SDK_DIR}(N)
+        ${CLOJURESCRIPT_DIR}(N)
+        ${YARN_BIN_DIR}(N))
+#+end_src

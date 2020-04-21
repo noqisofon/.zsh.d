@@ -1,0 +1,21 @@
+# -*- coding: utf-8; -*-
+#+title: zshrc
+#+options: ^:nil
+
+* 環境変数
+
+** RUBY_VERSION
+
+Ruby のバージョンです。
+
+#+begin_src shell-script :tangle ./rubyenv
+  export RUBY_VERSION=2.7.0
+#+end_src
+
+
+
+** RUBYGEMS_BIN_DIR
+
+#+begin_src shell-script :tangle ./rubyenv
+  test -d $HOME/.gem/ruby/$RUBY_VERSION/bin/ && export RUBYGEMS_BIN_DIR=$HOME/.gem/ruby/$RUBY_VERSION/bin
+#+end_src

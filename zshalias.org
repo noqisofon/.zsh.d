@@ -1,0 +1,19 @@
+# -*- coding: utf-8; -*-
+#+title: zshalias
+#+options: ^:nil
+
+
+* カラー化
+
+** ls
+
+#+begin_src shell-script :tangle ./zshalias
+  alias ls='ls --color=auto'
+#+end_src
+
+
+** grep
+
+#+begin_src shell-script :tangle ./zshalias
+  alias grep='grep --color=auto'
+#+end_src
