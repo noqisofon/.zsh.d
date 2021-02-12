@@ -182,6 +182,7 @@ Emacs ライクなキーバンドにします。
   if [ -f $HOME/.dir_colors ]; then
       eval `dircolors ~/.dir_colors`
   fi
+#+end_src
 
 #+begin_src shell-script :tangle ./zshrc
   zstyle ':completion:*:default' list-colors ${LS_COLORS}

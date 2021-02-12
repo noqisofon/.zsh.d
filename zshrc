@@ -8,11 +8,11 @@ setopt prompt_subst
 
 case ${UID} in
   0)
-    # root 用のプロンプトです。
+    # root 逕ｨ縺ｮ繝励Ο繝ｳ繝励ヨ縺ｧ縺吶�
     PROMPT="%B%M%b %~ %# "
     ;;
   *)
-    # 通常のプロンプトです。
+    # 騾壼ｸｸ縺ｮ繝励Ο繝ｳ繝励ヨ縺ｧ縺吶�
     PROMPT="%B%n@%m%b %~ %# "
     ;;
 esac
@@ -46,11 +46,10 @@ setopt print_eight_bit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 if [ -f $HOME/.dir_colors ]; then
-      eval `dircolors ~/.dir_colors`
-  fi
+    eval `dircolors ~/.dir_colors`
+fi
 
-#+begin_src shell-script :tangle ./zshrc
-  zstyle ':completion:*:default' list-colors ${LS_COLORS}
+zstyle ':completion:*:default' list-colors ${LS_COLORS}
 
 zstyle ':completion:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 
