@@ -3,27 +3,27 @@
 # perlenv
 # 
 #
-export PERL_LOCAL_LIB_ROOT="$HOME/.perl5"
-export PERL_MB_OPT="--install_base $PERL_LOCAL_LIB_ROOT"
-export PERL_MM_OPT="INSTALL_BASE${PERL_LOCAL_LIB_ROOT}"
+export PERL_LOCAL_LIB_ROOT_DIR="$HOME/.perl5"
+export PERL_MB_OPT="--install_base $PERL_LOCAL_LIB_ROOT_DIR"
+export PERL_MM_OPT="INSTALL_BASE${PERL_LOCAL_LIB_ROOT_DIR}"
 
-if [[ -d "$PERL_LOCAL_LIB_ROOT/bin" ]]; then
-    export PERL_LOCAL_BIN="$PERL_LOCAL_LIB_ROOT/bin"
+if [[ -d "$PERL_LOCAL_LIB_ROOT_DIR/bin" ]]; then
+    export PERL_LOCAL_BIN_DIR="$PERL_LOCAL_LIB_ROOT_DIR/bin"
 fi
 
 if [[ -d /usr/bin/core_perl ]]; then
-    export CORE_PERL_BIN=/usr/bin/core_perl
+    export CORE_PERL_BIN_DIR=/usr/bin/core_perl
 fi
 
 if [[ -d /usr/bin/site_perl/ ]]; then
-    export SITE_PERL_BIN=/usr/bin/site_perl/
+    export SITE_PERL_BIN_DIR=/usr/bin/site_perl/
 fi
 
 if [[ -d /usr/bin/vendor_perl/ ]]; then
-    export VENDOR_PERL_BIN=/usr/bin/vendor_perl/
+    export VENDOR_PERL_BIN_DIR=/usr/bin/vendor_perl/
 fi
 
 # Perl6
 if [[ -d ~/.perl6/bin/ ]]; then
-    export PERL6_BIN=~/.perl6/bin/
+    export PERL6_BIN_DIR=$HOME/.perl6/bin/
 fi
