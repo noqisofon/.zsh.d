@@ -7,15 +7,16 @@ autoload -U colors && colors
 setopt prompt_subst
 
 case ${UID} in
-  0)
-    # root 用のプロンプトです。
-    PROMPT="%B%M%b %~ %# "
-    ;;
-  *)
-    # 通常のプロンプトです。
-    PROMPT="%B%n@%m%b %~ %# "
-    ;;
-esac
+   0)
+     # root 用のプロンプトです。
+     PROMPT="%B%M%b %~ %# "
+     ;;
+   *)
+     # 通常のプロンプトです。
+     PROMPT="%B%n@%m%b %~
+%# "
+     ;;
+ esac
 
 PROMPT2="%_ >%_b"
 

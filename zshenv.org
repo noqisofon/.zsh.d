@@ -97,13 +97,13 @@ KCODE に UTF-8 を設定します。
   fi
 #+end_src
 
-** LOCAL_BIN_DIR
+** HOME_BIN_DIR
 
 ローカルのプログラムを置いておくところです。
 
 #+begin_src shell-script :tangle ./zshenv
   if [[ -d $HOME/bin ]]; then
-      export LOCAL_BIN_DIR=$HOME/bin
+      export HOME_BIN_DIR=$HOME/bin
   fi
 #+end_src
 
@@ -141,22 +141,24 @@ Ruby 用。
 
 #+begin_src shell-script :tangle ./zshenv
   path=(/sbin
-        /bin
-        /usr/sbin
-        /usr/bin
-        /usr/local/bin
-        /usr/local/sbin
-        ${LOCAL_BIN_DIR}(N)
-        ${CORE_PERL_BIN_DIR}(N)
-        ${SITE_PERL_BIN_DIR}(N)
-        ${VENDOR_PERL_BIN_DIR}(N)
-        ${PERL_LOCAL_BIN_DIR}(N)
-        ${PERL6_BIN_DIR}(N)
-        ${RUBYGEMS_BIN_DIR}(N)
-        ${ANDROID_NDK_DIR}(N)
-        ${ANDROID_SDK_DIR}(N)
-        ${PSP_SDK_DIR}(N)
-        ${ADDON_SDK_DIR}(N)
-        ${CLOJURESCRIPT_DIR}(N)
-        ${YARN_BIN_DIR}(N))
+	/bin
+	/usr/sbin
+	/usr/bin
+	/usr/local/bin
+	/usr/local/sbin
+	${HOME_BIN_DIR}(N)
+	${PERL_BIN_DIR}(N)
+	${CORE_PERL_BIN_DIR}(N)
+	${SITE_PERL_BIN_DIR}(N)
+	${VENDOR_PERL_BIN_DIR}(N)
+	${PERL_LOCAL_BIN_DIR}(N)
+	${PERL6_BIN_DIR}(N)
+	${PERL6_VENDER_BIN_DIR}(N)
+	${RUBYGEMS_BIN_DIR}(N)
+	${ANDROID_NDK_DIR}(N)
+	${ANDROID_SDK_DIR}(N)
+	${PSP_SDK_DIR}(N)
+	${ADDON_SDK_DIR}(N)
+	${CLOJURESCRIPT_DIR}(N)
+	${YARN_BIN_DIR}(N))
 #+end_src

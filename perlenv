@@ -23,3 +23,7 @@ fi
 if [[ -d $HOME/.perl6/bin/ ]]; then
     export PERL6_BIN_DIR=$HOME/.perl6/bin/
 fi
+
+if [[ -d /usr/share/perl6/vendor/bin/ ]]; then
+    export PERL6_VENDER_BIN_DIR=/usr/share/perl6/vendor/bin/
+fi

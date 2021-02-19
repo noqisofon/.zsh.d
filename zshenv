@@ -34,7 +34,7 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 if [[ -d $HOME/bin ]]; then
-    export LOCAL_BIN_DIR=$HOME/bin
+    export HOME_BIN_DIR=$HOME/bin
 fi
 
 if [[ -d /opt/android-ndk/ ]]; then
@@ -53,12 +53,14 @@ path=(/sbin
       /usr/bin
       /usr/local/bin
       /usr/local/sbin
-      ${LOCAL_BIN_DIR}(N)
+      ${HOME_BIN_DIR}(N)
+      ${PERL_BIN_DIR}(N)
       ${CORE_PERL_BIN_DIR}(N)
       ${SITE_PERL_BIN_DIR}(N)
       ${VENDOR_PERL_BIN_DIR}(N)
       ${PERL_LOCAL_BIN_DIR}(N)
       ${PERL6_BIN_DIR}(N)
+      ${PERL6_VENDER_BIN_DIR}(N)
       ${RUBYGEMS_BIN_DIR}(N)
       ${ANDROID_NDK_DIR}(N)
       ${ANDROID_SDK_DIR}(N)
