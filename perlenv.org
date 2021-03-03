@@ -7,6 +7,14 @@
   export PERL_LOCAL_LIB_ROOT_DIR="$HOME/.perl5"
 #+end_src
 
+#+begin_src shell-script :tangle ./perlenv
+  export INSTALLMAN1DIR=$PERL_LOCAL_LIB_ROOT_DIR/man/man1
+#+end_src
+
+#+begin_src shell-script :tangle ./perlenv
+  export INSTALLMAN3DIR=$PERL_LOCAL_LIB_ROOT_DIR/man/man3
+#+end_scr
+
 
 #+begin_src shell-script :tangle ./perlenv
   export PERL_MB_OPT="--install_base $PERL_LOCAL_LIB_ROOT_DIR"
@@ -17,6 +25,9 @@
   export PERL_MM_OPT="INSTALL_BASE${PERL_LOCAL_LIB_ROOT_DIR}"
 #+end_src
 
+#+begin_src shell-script :tangle ./perlenv
+  export PERL5LIB=$HOME/.perl5/lib/5.32
+#+end_src
 
 #+begin_src shell-script :tangle ./perlenv
   if [[ -d "$PERL_LOCAL_LIB_ROOT_DIR/bin" ]]; then
